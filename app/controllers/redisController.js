@@ -19,6 +19,7 @@ var redis = require("../helpers/redis");
          * @param next
          */
         postAction: function * postAction(next) {
+
             var result = yield redis.set(this.request.body.key, this.request.body.value, Number(this.request.body.expire));
             if (result) {
                 this.status = 201;

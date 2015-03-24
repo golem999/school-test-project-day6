@@ -58,11 +58,12 @@ module.exports = {
     set: function (key, value, ttl) {
         var deferred = Q.defer();
 
-        client.set(key, value, function (err, result) {
+        client.set(key, value, function (err) {
             if (err) {
                 deferred.reject(err);
             } else {
                 client.expire(key, ttl, function (err, result) {
+
                     if (err) {
                         deferred.reject(err);
                     } else {
